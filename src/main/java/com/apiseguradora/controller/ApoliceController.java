@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.apiseguradora.model.Apolice;
 import com.apiseguradora.repository.ApoliceRepository;
 import com.apiseguradora.service.ApoliceAtualizarService;
-import com.apiseguradora.service.ApoliceBuscarPorId;
 import com.apiseguradora.service.ApoliceBuscarPorNumero;
 import com.apiseguradora.service.ApoliceCadastroService;
 import com.apiseguradora.service.ApoliceDeletarService;
@@ -46,10 +45,7 @@ public class ApoliceController {
 	
 	@Autowired 
 	ApoliceDeletarService apoliceDeletarService;
-	
-	@Autowired
-	ApoliceBuscarPorId apoliceBuscarPorId;
-	
+		
 	@ApiOperation(value="Cria uma apolice")
 	@PostMapping("/criar")
 	public ResponseEntity<Object> criarApolice(@RequestBody @Valid Apolice apolice) {
@@ -80,12 +76,7 @@ public class ApoliceController {
 	}
 
 
-	@ApiOperation(value="Busca uma apolice por id")
-	@GetMapping("/{id}")
-	public ResponseEntity<Object> buscarApolicePorNumero(@PathVariable("id") Long id) {
-		return apoliceBuscarPorId.buscarPorId(id);
-		
-	}
+
 
 
 }
