@@ -54,8 +54,8 @@ public class ApoliceController {
 	}
 
 	@ApiOperation(value="Busca uma apolice por número da apolice")
-	@GetMapping("/numeroApolice/{id}")
-	public ResponseEntity<Object> buscarApolicePorNumero(@PathVariable("id") String numeroApolice) {
+	@GetMapping("/numeroApolice/{numeroApolice}")
+	public ResponseEntity<Object> buscarApolicePorNumero(@PathVariable("numeroApolice") String numeroApolice) {
 		return apoliceBuscarPorNumero.buscarApolicePorNumero(numeroApolice);
 		
 	}
