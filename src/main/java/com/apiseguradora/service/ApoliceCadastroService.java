@@ -32,10 +32,13 @@ public class ApoliceCadastroService {
 	apoliceNovo.setDataFimVigencia(apolice.getDataFimVigencia());
 
 	try {
-		Apolice Apolicee = apoliceRepository.save(apoliceNovo);
-		return new ResponseEntity<>(Apolicee, HttpStatus.CREATED);
+		// return new ResponseEntity<>(Apolicee, HttpStatus.CREATED);
+		
+			Apolice Apolicee = apoliceRepository.save(apoliceNovo);
+		return new ResponseEntity<>(new ApiMessage( "Apolice cadastrada! Dados:"  + Apolicee), HttpStatus.OK);
 	} catch (Exception e) {
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
 }
 }

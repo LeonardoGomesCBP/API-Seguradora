@@ -24,19 +24,19 @@ public class Cliente {
 	@Column(name = "id")
 	private long id;
 
-	@NotBlank
+	@NotBlank(message = "{cidade.not.blank}")
 	@Column(name = "cidade")
 	private String cidade;
 
-	@NotBlank
+	@NotBlank(message = "{cpf.not.blank}")
 	@Column(name = "cpf", unique = true)
 	private String cpf;
 
-	@NotBlank
+	@NotBlank(message = "{nomeCompleto.not.blank}")
 	@Column(name = "nome_completo")
 	private String nomeCompleto;
 
-	@NotBlank
+	@NotBlank(message = "{uf.not.blank}")
 	@Column(name = "uf")
 	private String uf;
 

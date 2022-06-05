@@ -1,5 +1,7 @@
 package com.apiseguradora.controller;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,14 +50,14 @@ public class ApoliceController {
 		
 	@ApiOperation(value="Cria uma apolice")
 	@PostMapping("/criar")
-	public ResponseEntity<Object> criarApolice(@RequestBody @Valid Apolice apolice) {
+	public ResponseEntity<Object> criarApolice(@RequestBody @NotBlank @Valid Apolice apolice) {
 		return apoliceCadastroService.cadastro(apolice);
 		
 	}
 
 	@ApiOperation(value="Busca uma apolice por número da apolice")
 	@GetMapping("/numeroApolice/{numeroApolice}")
-	public ResponseEntity<Object> buscarApolicePorNumero(@PathVariable("numeroApolice") String numeroApolice) {
+	public ResponseEntity<Object> buscarApolicePorNumero(@NotBlank @PathVariable("numeroApolice") String numeroApolice) {
 		return apoliceBuscarPorNumero.buscarApolicePorNumero(numeroApolice);
 		
 	}

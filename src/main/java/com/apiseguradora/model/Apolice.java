@@ -31,19 +31,20 @@ public class Apolice implements Serializable {
 	private String dataFimVigencia;
 
 	@Column(name = "data_inicio_vigencia")
-    @NotBlank
+    @NotBlank(message = "{dataInicioVigencia.not.blank}")
 	private String dataInicioVigencia;
 
 	@Column(name = "numero_apolice", unique = true)
-    @NotBlank
+    @NotBlank(message = "{numeroApolice.not.blank}")
 	private String numeroApolice;
 
 	@Column(name = "placa_veiculo")
     @NotBlank
+    @NotBlank(message = "{placaVeiculo.not.blank}")
 	private String placaVeiculo;
 
 	@Column(name = "valor_apolice")
-    @NotBlank
+    @NotBlank(message = "{valorApolice.not.blank}")
 	private String valorApolice;
 	
 

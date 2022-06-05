@@ -19,7 +19,7 @@ public class ClienteDeletarService {
 			clienteRepository.deleteById(id);
 			return new ResponseEntity<>(new ApiMessage("Cliente deletado:" + id), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
-			return new ResponseEntity<>(new ApiMessage("Cliente não encontrado"), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(new ApiMessage("Cliente não encontrado: " +  id), HttpStatus.NOT_FOUND);
 		}
 	}
 }

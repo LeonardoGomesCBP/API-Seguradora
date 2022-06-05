@@ -25,7 +25,6 @@ public class ClienteCadastroService {
 		existeCadastro = clienteRepository.buscarPorCPF(Cliente.getCpf().replaceAll("[^0-9]", "")); // o mesmo que o TRIM
 
 		if (existeCadastro != 0) {
-			// ResponseEntity<?> permite passar uma mensagem no retorno ("CPF já cadastrado").
 			return new ResponseEntity<>("CPF já cadastrado!", HttpStatus.PRECONDITION_REQUIRED); 
 		} else {
 			cli.setNomeCompleto(Cliente.getNomeCompleto());
