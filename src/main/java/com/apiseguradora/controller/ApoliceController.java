@@ -1,4 +1,7 @@
 package com.apiseguradora.controller;
+import java.text.ParseException;
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
@@ -16,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apiseguradora.model.Apolice;
+import com.apiseguradora.model.Cliente;
 import com.apiseguradora.repository.ApoliceRepository;
 import com.apiseguradora.service.ApoliceAtualizarService;
 import com.apiseguradora.service.ApoliceBuscarPorNumero;
 import com.apiseguradora.service.ApoliceCadastroService;
 import com.apiseguradora.service.ApoliceDeletarService;
+import com.apiseguradora.service.ApoliceListarTodosService;
 import com.apiseguradora.service.ApoliceReturnService;
 
 import io.swagger.annotations.Api;
@@ -47,6 +52,8 @@ public class ApoliceController {
 	
 	@Autowired 
 	ApoliceDeletarService apoliceDeletarService;
+	
+	@Autowired ApoliceListarTodosService apoliceListarTodosService;
 		
 	@ApiOperation(value="Cria uma apolice")
 	@PostMapping("/criar")
@@ -57,7 +64,7 @@ public class ApoliceController {
 
 	@ApiOperation(value="Busca uma apolice por número da apolice")
 	@GetMapping("/numeroApolice/{numeroApolice}")
-	public ResponseEntity<Object> buscarApolicePorNumero(@NotBlank @PathVariable("numeroApolice") String numeroApolice) {
+	public ResponseEntity<Object> buscarApolicePorNumero(@NotBlank @PathVariable("numeroApolice") String numeroApolice) throws ParseException {
 		return apoliceBuscarPorNumero.buscarApolicePorNumero(numeroApolice);
 		
 	}
@@ -77,6 +84,11 @@ public class ApoliceController {
 		return apoliceDeletarService.deletarApolice(id);
 	}
 
+	
+	@GetMapping("/listar")
+	public ResponseEntity<List<Apolice>> listarApolices() {
+		return apoliceListarTodosService.listarApolices();
+	}
 
 
 

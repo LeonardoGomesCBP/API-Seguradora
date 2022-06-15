@@ -21,6 +21,7 @@ public class ApoliceDeletarService {
 		apoliceRepository.deleteById(id);
 		return new ResponseEntity<>(new ApiMessage("Apolice deletada:" + id), HttpStatus.OK);
 	} catch (Exception e) {
+	//	System.out.println("Apolice não encontrada");
 		return new ResponseEntity<>(new ApiMessage("Apolice não encontrada:" + id), HttpStatus.NOT_FOUND);
 	
 }

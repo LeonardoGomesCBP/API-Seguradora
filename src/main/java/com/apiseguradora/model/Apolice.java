@@ -3,17 +3,16 @@ package com.apiseguradora.model;
 
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "apolice")
 public class Apolice implements Serializable {
@@ -27,12 +26,12 @@ public class Apolice implements Serializable {
 	private Long id;
 
 	@Column(name = "data_fim_vigencia")
-    @NotBlank
-	private String dataFimVigencia;
+	@NotNull(message = "{dataFimVigencia.not.blank}")
+	private LocalDate dataFimVigencia;
 
 	@Column(name = "data_inicio_vigencia")
-    @NotBlank(message = "{dataInicioVigencia.not.blank}")
-	private String dataInicioVigencia;
+    @NotNull(message = "{dataInicioVigencia.not.blank}")
+	private LocalDate dataInicioVigencia;
 
 	@Column(name = "numero_apolice", unique = true)
     @NotBlank(message = "{numeroApolice.not.blank}")
@@ -44,9 +43,14 @@ public class Apolice implements Serializable {
 	private String placaVeiculo;
 
 	@Column(name = "valor_apolice")
-    @NotBlank(message = "{valorApolice.not.blank}")
-	private String valorApolice;
+    @NotNull(message = "{valorApolice.not.blank}")
+	private Long valorApolice;
 	
+	
+	
+	public Apolice() {
+	}
+
 
 
 	

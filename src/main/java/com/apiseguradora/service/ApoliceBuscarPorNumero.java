@@ -1,5 +1,7 @@
 package com.apiseguradora.service;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +17,12 @@ public class ApoliceBuscarPorNumero {
 
 	@Autowired
 	ApoliceRepository apoliceRepository;
-
-	public ResponseEntity<Object> buscarApolicePorNumero(String numeroApolice) {
+	
+	public ResponseEntity<Object> buscarApolicePorNumero(String numeroApolice) throws ParseException {
 		Apolice Apolice = apoliceRepository.buscarApolicePorNumero(numeroApolice);
-
+		
 		ApoliceReturnService apoVO = new ApoliceReturnService(Apolice);
+
 		if (Apolice != null) {
 			return new ResponseEntity<>(apoVO, HttpStatus.OK);
 		} else {
