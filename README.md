@@ -1,7 +1,5 @@
-Para executar o projeto via WAR basta entrar no diretório com o CMD em modo administrador e executar: "java -jar apiseguradora.war".
-
-Necessário JAVA 8 e MYSQL(O banco será criado automaticamente pelo Hibernate/JPA)
-
-O Swagger está configurado, basta executar o war e acessar http://localhost:8080/swagger-ui.html#/.
-
-Na hora da requisição post, o numero da apolice pode ser deixado em branco já que será criado automaticamente.
+Para executar o projeto via docker:
+1. Fazer o download do docker
+2. No terminal do docker, entrar na pasta do projeto com CD
+3. Digitar docker-compose up
+4. Pronto! A aplicação estará rodando com um container MYSQL já configurado 
