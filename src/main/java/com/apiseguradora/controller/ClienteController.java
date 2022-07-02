@@ -52,7 +52,7 @@ public class ClienteController {
 	}
 
 	@GetMapping("/listar")
-	public ResponseEntity<List<Cliente>> listarClientes() {
+	public ResponseEntity<Object> listarClientes() {
 		return clienteListarTodosService.listarClientes();
 	}
 

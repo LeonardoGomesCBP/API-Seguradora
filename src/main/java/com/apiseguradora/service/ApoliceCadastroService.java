@@ -38,8 +38,9 @@ public class ApoliceCadastroService {
 			Apolice Apolicee = apoliceRepository.save(apoliceNovo);
 			
 		return new ResponseEntity<>(new ApiMessage( "Apolice cadastrada! Dados:"  + apoliceNovo), HttpStatus.OK);
+			
 	} catch (Exception e) {
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(new ApiMessage( "Algo não inesperado ocorreu:"  + apoliceNovo), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 }

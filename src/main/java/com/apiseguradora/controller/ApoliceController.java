@@ -86,7 +86,7 @@ public class ApoliceController {
 
 	
 	@GetMapping("/listar")
-	public ResponseEntity<List<Apolice>> listarApolices() {
+	public ResponseEntity<Object> listarApolices() {
 		return apoliceListarTodosService.listarApolices();
 	}
 

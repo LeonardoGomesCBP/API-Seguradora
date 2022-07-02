@@ -1,34 +1,29 @@
 package com.apiseguradora.service;
 
-import java.text.ParseException;
-
+import com.apiseguradora.exception.ApiMessage;
+import com.apiseguradora.model.Apolice;
+import com.apiseguradora.repository.ApoliceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import com.apiseguradora.exception.ApiMessage;
-import com.apiseguradora.model.Apolice;
-import com.apiseguradora.repository.ApoliceRepository;
 
 @Service
 public class ApoliceBuscarPorNumero {
 
-	@Autowired
-	ApoliceRepository apoliceRepository;
-	
-	public ResponseEntity<Object> buscarApolicePorNumero(String numeroApolice) throws ParseException {
-		Apolice Apolice = apoliceRepository.buscarApolicePorNumero(numeroApolice);
-		
-		ApoliceReturnService apoVO = new ApoliceReturnService(Apolice);
+    @Autowired
+    ApoliceRepository apoliceRepository;
 
-		if (Apolice != null) {
-			return new ResponseEntity<>(apoVO, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(new ApiMessage("Apolice não encontrada:"), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> buscarApolicePorNumero(String numeroApolice) {
 
-		}
+        try {
+            Apolice Apolice = apoliceRepository.buscarApolicePorNumero(numeroApolice);
+            ApoliceReturnService apoVO = new ApoliceReturnService(Apolice);
+            return new ResponseEntity<>(apoVO, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiMessage("Apolice não encontrada:" + numeroApolice), HttpStatus.NOT_FOUND);
+        }
 
-	}
+    }
 }
+

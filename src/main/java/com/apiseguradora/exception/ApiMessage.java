@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 //classe para retornar mensagens de erro ou sucesso no response entity
-public class ApiMessage  {
+public class ApiMessage {
 	
 	private String Message;
 
