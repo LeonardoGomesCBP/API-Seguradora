@@ -9,51 +9,45 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 
 @Data
 @Entity
-@Table(name = "apolice")
-public class Apolice implements Serializable {
+public class Apolice extends AbstractEntity<Long> {
 
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
-	@Column(name = "id")
-	private Long id;
-
-	@Column(name = "data_fim_vigencia")
-	@NotNull(message = "{dataFimVigencia.not.blank}")
+//	@NotNull(message = "{dataFimVigencia.not.blank}")
 	private LocalDate dataFimVigencia;
 
-	@Column(name = "data_inicio_vigencia")
-    @NotNull(message = "{dataInicioVigencia.not.blank}")
+   // @NotNull(message = "{dataInicioVigencia.not.blank}")
 	private LocalDate dataInicioVigencia;
 
-	@Column(name = "numero_apolice", unique = true)
-    @NotBlank(message = "{numeroApolice.not.blank}")
+	@Column(unique = true)
+   // @NotBlank(message = "{numeroApolice.not.blank}")
 	private String numeroApolice;
 
-	@Column(name = "placa_veiculo")
-    @NotBlank
-    @NotBlank(message = "{placaVeiculo.not.blank}")
+    //@NotBlank(message = "{placaVeiculo.not.blank}")
 	private String placaVeiculo;
 
-	@Column(name = "valor_apolice")
-    @NotNull(message = "{valorApolice.not.blank}")
+   // @NotNull(message = "{valorApolice.not.blank}")
 	private Long valorApolice;
-	
-	
-	
+
+
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "cliente_id_fk")
+	private Cliente cliente;
+
+
 	public Apolice() {
 	}
 
 
 
-	
+
+
 
 
 }

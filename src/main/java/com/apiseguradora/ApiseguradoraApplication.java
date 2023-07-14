@@ -13,11 +13,6 @@ public class ApiseguradoraApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiseguradoraApplication.class, args);
 	}
-	
-	  @Override
-	  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-	      return builder.sources(ApiseguradoraApplication.class);
-	  }
 
 
 }

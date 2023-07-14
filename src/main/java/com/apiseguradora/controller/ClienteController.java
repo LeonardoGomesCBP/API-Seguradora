@@ -1,11 +1,8 @@
 package com.apiseguradora.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apiseguradora.model.Cliente;
 import com.apiseguradora.repository.ClienteRepository;
-import com.apiseguradora.service.ClienteAtualizarService;
-import com.apiseguradora.service.ClienteBuscarPorIDService;
-import com.apiseguradora.service.ClienteCadastroService;
-import com.apiseguradora.service.ClienteDeletarService;
-import com.apiseguradora.service.ClienteListarTodosService;
+import com.apiseguradora.service.Cliente.ClienteAtualizarService;
+import com.apiseguradora.service.Cliente.ClienteBuscarPorIDService;
+import com.apiseguradora.service.Cliente.ClienteCadastroService;
+import com.apiseguradora.service.Cliente.ClienteDeletarService;
+import com.apiseguradora.service.Cliente.ClienteListarTodosService;
 
 
 @RestController

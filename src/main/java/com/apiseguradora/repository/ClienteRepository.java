@@ -11,4 +11,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 	@Query("Select count(c) from Cliente c where c.cpf = ?1") 
 	Integer buscarPorCPF(String cpf);
 
+	Cliente findByCpf(String cpf);
+
+
 }

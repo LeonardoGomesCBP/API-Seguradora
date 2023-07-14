@@ -1,4 +1,4 @@
-package com.apiseguradora.service;
+package com.apiseguradora.service.Apolice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

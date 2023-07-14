@@ -1,4 +1,4 @@
-package com.apiseguradora.service;
+package com.apiseguradora.service.Apolice;
 
 import java.util.Optional;
 
@@ -29,8 +29,8 @@ public class ApoliceAtualizarService {
 			}
 			_apolice.setPlacaVeiculo(apolice.getPlacaVeiculo());
 			_apolice.setValorApolice(apolice.getValorApolice());
-			_apolice.setDataInicioVigencia(apolice.getDataInicioVigencia());
-			_apolice.setDataFimVigencia(apolice.getDataFimVigencia());
+		//	_apolice.setDataInicioVigencia(apolice.getDataInicioVigencia());
+		//	_apolice.setDataFimVigencia(apolice.getDataFimVigencia());
 
 			return new ResponseEntity<>(apoliceRepository.save(_apolice), HttpStatus.OK);
 		} else {

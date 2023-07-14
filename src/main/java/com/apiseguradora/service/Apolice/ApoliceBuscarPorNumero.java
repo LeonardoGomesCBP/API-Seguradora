@@ -1,4 +1,4 @@
-package com.apiseguradora.service;
+package com.apiseguradora.service.Apolice;
 
 import com.apiseguradora.exception.ApiMessage;
 import com.apiseguradora.model.Apolice;
