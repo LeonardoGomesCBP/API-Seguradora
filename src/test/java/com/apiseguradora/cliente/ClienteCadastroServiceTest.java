@@ -1,13 +1,13 @@
-package com.apiseguradora;
+package com.apiseguradora.cliente;
 
 import com.apiseguradora.model.Cliente;
 import com.apiseguradora.repository.ClienteRepository;
 import com.apiseguradora.service.Cliente.ClienteCadastroService;
-import com.apiseguradora.utils.Utils;
+import com.apiseguradora.utils.CpfValidator;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class ClienteCadastroServiceTest {
 
 
     @MockBean
-    private Utils.CpfValidator cpfValidator;
+    private CpfValidator cpfValidator;
 
     @BeforeEach
     public void setUp() {
@@ -67,7 +67,7 @@ public class ClienteCadastroServiceTest {
     @Test
     public void testCriarCliente_CpfInvalido() {
         Cliente cliente = new Cliente();
-        cliente.setCpf("invalid_cpf");
+        cliente.setCpf("231234123124");
 
         when(clienteRepository.buscarPorCPF(anyString())).thenReturn(0);
         when(cpfValidator.isValid(anyString())).thenReturn(true);

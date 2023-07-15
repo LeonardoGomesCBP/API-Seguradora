@@ -70,7 +70,7 @@ public class ApoliceController {
 		return apoliceDeletarService.deletarApolice(id);
 	}
 
-
+	@ApiOperation(value="Busca por todas as apolices ou por cpf do cliente")
 	@GetMapping
 	public ResponseEntity<Object> getApolices(@RequestParam(required = false) String cpf) {
 		if (cpf != null) {

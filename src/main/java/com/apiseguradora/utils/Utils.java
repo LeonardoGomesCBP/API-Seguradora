@@ -38,11 +38,5 @@ public class Utils {
         return cpf.equals(cpf.substring(0, 9) + digito1.toString() + digito2.toString());
     }
 
-    @Component
-    public class CpfValidator {
-        public boolean isValid(String cpf) {
-            return Utils.isValidCPF(cpf);
-        }
-    }
 
 }

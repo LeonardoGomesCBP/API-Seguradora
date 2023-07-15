@@ -3,7 +3,7 @@ package com.apiseguradora.service.Cliente;
 import com.apiseguradora.exception.ApiMessage;
 import com.apiseguradora.model.Cliente;
 import com.apiseguradora.repository.ClienteRepository;
-import com.apiseguradora.utils.Utils;
+import com.apiseguradora.utils.CpfValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ public class ClienteCadastroService {
     ClienteRepository clienteRepository;
 
     @Autowired
-    Utils.CpfValidator cpfValidator;
+    CpfValidator cpfValidator;
 
     public ResponseEntity<Object> criarCliente(Cliente cliente) {
         String cpf = cliente.getCpf().replaceAll("[^0-9]", "");
@@ -38,7 +38,7 @@ public class ClienteCadastroService {
     }
 
 
-    public void setCpfValidator(Utils.CpfValidator cpfValidator) {
+    public void setCpfValidator(CpfValidator cpfValidator) {
         this.cpfValidator = cpfValidator;
     }
 

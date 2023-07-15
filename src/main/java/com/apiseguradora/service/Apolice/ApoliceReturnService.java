@@ -14,8 +14,6 @@ public class ApoliceReturnService {
 
 
     String numeroApolice;
-
-
     Boolean apoliceVencida;
     int diasVencer;
     String placaVeiculo;
@@ -25,25 +23,17 @@ public class ApoliceReturnService {
 
 
     // Lógica para determinar se a apolice está vencida
-    public ApoliceReturnService(Apolice Apolice) throws ParseException {
+    public ApoliceReturnService(Apolice apolice) {
+        this.numeroApolice = apolice.getNumeroApolice();
+        this.inicio = apolice.getDataInicioVigencia();
+        this.fim = apolice.getDataFimVigencia();
+        this.placaVeiculo = apolice.getPlacaVeiculo();
+        this.valorApolice = apolice.getValorApolice();
 
-        int diasVencido = 0;
-        this.apoliceVencida = false;
-        this.numeroApolice = Apolice.getNumeroApolice();
-        this.inicio = Apolice.getDataInicioVigencia();
-        this.fim = Apolice.getDataFimVigencia();
-
-
-        diasVencido = (int) ChronoUnit.DAYS.between(inicio, fim);
-        this.diasVencer = diasVencido;
-
-        if (diasVencido < 0) {
-            this.apoliceVencida = true;
-        }
-        this.placaVeiculo = Apolice.getPlacaVeiculo();
-        this.valorApolice = Apolice.getValorApolice();
-
+        this.diasVencer = (int) ChronoUnit.DAYS.between(inicio, fim);
+        this.apoliceVencida = diasVencer < 0;
     }
+
 
     public ApoliceReturnService() {
 
