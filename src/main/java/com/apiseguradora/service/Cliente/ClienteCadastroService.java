@@ -14,34 +14,36 @@ public class ClienteCadastroService {
     @Autowired
     ClienteRepository clienteRepository;
 
-    Cliente cli = new Cliente();
+    @Autowired
+    Utils.CpfValidator cpfValidator;
 
+    public ResponseEntity<Object> criarCliente(Cliente cliente) {
+        String cpf = cliente.getCpf().replaceAll("[^0-9]", "");
 
-    public ResponseEntity<Object> criarCliente(Cliente Cliente) {
-
-        int existeCadastro = 0;
-
-        existeCadastro = clienteRepository.buscarPorCPF(Cliente.getCpf().replaceAll("[^0-9]", "")); // o mesmo que o TRIM
-
-        if (existeCadastro != 0) {
+        if (clienteRepository.buscarPorCPF(cpf) != 0) {
             return new ResponseEntity<>(new ApiMessage("CPF já cadastrado!"), HttpStatus.PRECONDITION_REQUIRED);
-        } else {
-            cli.setNomeCompleto(Cliente.getNomeCompleto());
-            cli.setCidade(Cliente.getCidade());
-            cli.setCpf(Cliente.getCpf().replaceAll("[^0-9]", ""));
-            cli.setUf(Cliente.getUf());
+        }
 
-            try {
-                if (Utils.isValidCPF(Cliente.getCpf().replaceAll("[^0-9]", ""))) {
-                    Cliente _cliente = clienteRepository.save(cli);
-                    return new ResponseEntity<>(_cliente, HttpStatus.CREATED);
-                } else {
-                    return new ResponseEntity<>(new ApiMessage("CPF não é válido!"), HttpStatus.PRECONDITION_REQUIRED);
-                }
-            } catch (Exception e) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
+        if (!cpfValidator.isValid(cpf)) {
+            return new ResponseEntity<>(new ApiMessage("CPF não é válido!"), HttpStatus.PRECONDITION_REQUIRED);
+        }
 
+        try {
+            cliente.setCpf(cpf);
+            Cliente _cliente = clienteRepository.save(cliente);
+            return new ResponseEntity<>(_cliente, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
+
+    public void setCpfValidator(Utils.CpfValidator cpfValidator) {
+        this.cpfValidator = cpfValidator;
+    }
+
+    public void setClienteRepository(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
+
 }
